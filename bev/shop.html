@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Black Kite — Shop (Soft)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/soft-placeholders.css">
+<style>
+  :root { --paper:#e7d7b8; --ink:#24180f; --mute:#5c4a38; }
+  * { box-sizing:border-box; }
+  html,body { margin:0; background:var(--paper); color:var(--ink); font-family:Outfit,"Helvetica Neue",sans-serif; }
+  body::before {
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:0; opacity:0.035;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body > * { position:relative; z-index:1; }
+  img { display:block; max-width:100%; }
+  a { color:inherit; text-decoration:none; }
+  button { font:inherit; color:inherit; background:none; border:0; padding:0; cursor:pointer; }
+  .top { display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap; padding:22px 4vw 0; }
+  .brand { display:flex; align-items:flex-end; gap:14px; }
+  .word-sm { margin:0; font-family:"Barlow Condensed",Impact,sans-serif; font-weight:700; font-size:clamp(42px,8vw,72px); line-height:.78; letter-spacing:-.03em; }
+  .stamp { width:36px; height:36px; margin-bottom:10px; }
+  .stamp circle { fill:var(--ink); } .stamp path { fill:var(--paper); }
+  .nav { display:flex; gap:20px; font-size:14px; padding-bottom:14px; }
+  .nav a:hover, .nav a.is-on { text-decoration:underline; text-underline-offset:3px; }
+  .rule { border:0; border-top:2px solid var(--ink); margin:10px 4vw 0; }
+  .wholesale { margin:0; padding:14px 4vw 12px; font-size:clamp(16px,2vw,20px); display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
+  .wholesale .mail { border-bottom:2px solid var(--ink); font-size:clamp(20px,2.4vw,26px); font-weight:500; padding-bottom:1px; }
+  .month-label { padding:16px 4vw 0; font-size:13px; color:var(--mute); }
+  #month-cans { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; padding:20px 4vw 4vh; align-items:end; }
+  #month-cans article { text-align:left; }
+  #month-cans .tile { background:rgba(255,255,255,.28); border:1px solid rgba(36,24,15,.12); padding:18px 10px 8px; display:flex; align-items:flex-start; justify-content:center; min-height:48vh; }
+  #month-cans .ph { min-height:48vh; background:rgba(255,255,255,.4); }
+  #month-cans img { width:100%; height:48vh; object-fit:contain; object-position:center top; }
+  #month-cans b { display:block; margin-top:12px; font-family:"Barlow Condensed",Impact,sans-serif; font-size:clamp(24px,2.8vw,34px); font-weight:500; line-height:1; }
+  #month-cans i { display:block; margin-top:4px; font-style:normal; font-size:13px; color:var(--mute); }
+  .full-label { padding:8px 4vw 0; }
+  #shop-all { padding:16px 4vw 6vh; gap:16px; background:transparent; }
+  #shop-all article { border:2px solid rgba(36,24,15,.2); padding:18px 12px 22px; background:rgba(255,255,255,.22); }
+  #shop-all article:nth-child(3n) { border-right:2px solid rgba(36,24,15,.2); }
+  #shop-all .tile { background:rgba(255,255,255,.35); border:1px solid rgba(36,24,15,.12); padding:12px; min-height:260px; display:flex; align-items:flex-start; justify-content:center; }
+  #shop-all .ph { min-height:260px; }
+  #shop-all img { max-height:280px; width:auto; }
+  #shop-all b { font-family:"Barlow Condensed",Impact,sans-serif; font-weight:500; font-size:clamp(18px,2vw,26px); }
+  .soft-banner { border-bottom-color:#24180f; }
+  .ph-callout { background:#efe4c8; border-bottom-color:var(--ink); color:var(--ink); }
+  .foot { display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; padding:14px 4vw 28px; font-size:13px; color:var(--mute); border-top:2px solid var(--ink); margin:0 4vw; }
+  @media (max-width:800px){
+    #month-cans { grid-template-columns:1fr; }
+    #month-cans .tile, #month-cans .ph { min-height:320px; } #month-cans img { height:320px; }
+  }
+  @media (prefers-reduced-motion:reduce){ body::before { display:none; } }
+</style>
+</head>
+<body>
+<p class="soft-banner"><strong>SOFT MOCKUP</strong><span class="sep">·</span> not live · not publishable<span class="sep">·</span> grey dashed frames = PLACEHOLDER — replace before publish</p>
+<p class="ph-callout"><b>PLACEHOLDER rule:</b> Real can photos only for Skybound, Czechmate, 呢度重女. All other products show dashed PLACEHOLDER frames with live-shop names &amp; prices — swap in product photos before go-live. Soft ≠ publishable.</p>
+<header class="top">
+  <div class="brand">
+    <a href="index.html" class="word-sm" style="color:inherit">BLACK KITE</a>
+    <svg class="stamp" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="31"/><path d="M40 14c-2 6-8 8-12 10 6 1 9 5 10 10-7-1-12 2-16 7 8-1 12 3 13 9-8 0-14 4-18 8 10-6 22-8 30-6-6 4-8 9-7 14-8-6-18-8-26-6 2-8 8-16 16-22-6 1-12 0-16-3 8 0 14-4 16-10 2 4 6 6 10 6-2-6-1-12 0-17z"/></svg>
+  </div>
+  <nav class="nav"><a href="index.html">Home</a><a href="shop.html" class="is-on">Shop</a><a href="trade.html">Trade</a><a href="visit.html">Visit</a></nav>
+</header>
+<hr class="rule">
+<p class="wholesale" id="trade-line">Wholesale. One email. <button type="button" class="mail" data-copy="beer@blackkite.hk">beer@blackkite.hk</button></p>
+<hr class="rule">
+<p class="month-label">This month — edit only #month-cans (image + name + ABV + price).</p>
+<div id="month-cans">
+  <article data-sku="skybound">
+    <div class="tile"><img src="../assets/skybound.jpg" alt="Skybound Lager"></div>
+    <b>Skybound · $25</b>
+    <i>4.6% · lager</i>
+  </article>
+  <article data-sku="czechmate">
+    <div class="tile"><img src="../assets/czechmate-full.png" alt="Czechmate"></div>
+    <b>Czechmate · $30</b>
+    <i>4.5% · dark lager</i>
+  </article>
+  <article data-sku="badass">
+    <div class="tile"><img src="../assets/badass-full.png" alt="呢度重女 Badass"></div>
+    <b>呢度重女 · $30</b>
+    <i>6.0% · hazy IPA</i>
+  </article>
+</div>
+<div class="full-label"><p class="shop-section-label" style="padding-left:0">Full selection · live shop catalog <span class="ph-text">dashed = need photo</span></p></div>
+<div id="shop-all">
+  <article data-sku="skybound">
+    <div class="tile"><img src="../assets/skybound.jpg" alt="Skybound Lager"></div>
+    <b>Skybound Lager</b>
+    <i>4.6% · lager · $25</i>
+  </article>
+  <article data-sku="czechmate">
+    <div class="tile"><img src="../assets/czechmate-full.png" alt="Czechmate"></div>
+    <b>Czechmate Czech Dark Lager</b>
+    <i>4.5% · dark lager · $30</i>
+  </article>
+  <article data-sku="patchun" data-placeholder="true">
+    <div class="ph" role="img" aria-label="PLACEHOLDER — replace can photo before publish: Black Kite × Pat Chun Sweetened Vinegar Oaked Sour">
+        <span class="ph-tag">PLACEHOLDER</span>
+        <span class="ph-name">Black Kite × Pat Chun Sweetened Vinegar Oaked…</span>
+        <span class="ph-hint">Replace photo before publish</span>
+      </div>
+    <b>Black Kite × Pat Chun Sweetened Vinegar Oaked Sour</b>
+    <i>oaked sour · ask for ABV · $44</i>
+    <span class="ph-badge">PLACEHOLDER — replace photo</span>
+  </article>
+  <article data-sku="toast" data-placeholder="true">
+    <div class="ph" role="img" aria-label="PLACEHOLDER — replace can photo before publish: Earth Day Tribute: Toast the Day Kvass-inspired Ale">
+        <span class="ph-tag">PLACEHOLDER</span>
+        <span class="ph-name">Earth Day Tribute: Toast the Day Kvass-inspir…</span>
+        <span class="ph-hint">Replace photo before publish</span>
+      </div>
+    <b>Earth Day Tribute: Toast the Day Kvass-inspired Ale</b>
+    <i>kvass-inspired ale · ask for ABV · $30</i>
+    <span class="ph-badge">PLACEHOLDER — replace photo</span>
+  </article>
+  <article data-sku="badass">
+    <div class="tile"><img src="../assets/badass-full.png" alt="呢度重女 Badass"></div>
+    <b>呢度重女 Badass Brew Hazy IPA</b>
+    <i>6.0% · hazy IPA · $30</i>
+  </article>
+  <article data-sku="ferryman" data-placeholder="true">
+    <div class="ph" role="img" aria-label="PLACEHOLDER — replace can photo before publish: Black Kite × Cloudwater: Chester Ferryman">
+        <span class="ph-tag">PLACEHOLDER</span>
+        <span class="ph-name">Black Kite × Cloudwater: Chester Ferryman</span>
+        <span class="ph-hint">Replace photo before publish</span>
+      </div>
+    <b>Black Kite × Cloudwater: Chester Ferryman</b>
+    <i>collab · ask for ABV · $35</i>
+    <span class="ph-badge">PLACEHOLDER — replace photo</span>
+  </article>
+  <article data-sku="roman" data-placeholder="true">
+    <div class="ph" role="img" aria-label="PLACEHOLDER — replace can photo before publish: My Roman Empire Vienna Lager">
+        <span class="ph-tag">PLACEHOLDER</span>
+        <span class="ph-name">My Roman Empire Vienna Lager</span>
+        <span class="ph-hint">Replace photo before publish</span>
+      </div>
+    <b>My Roman Empire Vienna Lager</b>
+    <i>vienna lager · ask for ABV · $25</i>
+    <span class="ph-badge">PLACEHOLDER — replace photo</span>
+  </article>
+  <article data-sku="imply" data-placeholder="true">
+    <div class="ph" role="img" aria-label="PLACEHOLDER — replace can photo before publish: Black Kite × IMPLY “Dark Circuit” Black IPA">
+        <span class="ph-tag">PLACEHOLDER</span>
+        <span class="ph-name">Black Kite × IMPLY “Dark Circuit” Black IPA</span>
+        <span class="ph-hint">Replace photo before publish</span>
+      </div>
+    <b>Black Kite × IMPLY “Dark Circuit” Black IPA</b>
+    <i>black IPA · ask for ABV · $35</i>
+    <span class="ph-badge">PLACEHOLDER — replace photo</span>
+  </article>
+  <article data-sku="elcap" data-placeholder="true">
+    <div class="ph" role="img" aria-label="PLACEHOLDER — replace can photo before publish: El Capitan — Yosemite 2.0 American IPA">
+        <span class="ph-tag">PLACEHOLDER</span>
+        <span class="ph-name">El Capitan — Yosemite 2.0 American IPA</span>
+        <span class="ph-hint">Replace photo before publish</span>
+      </div>
+    <b>El Capitan — Yosemite 2.0 American IPA</b>
+    <i>6.5% · DDH American IPA · $35</i>
+    <span class="ph-badge">PLACEHOLDER — replace photo</span>
+  </article>
+  <article data-sku="pbjset" data-placeholder="true">
+    <div class="ph" role="img" aria-label="PLACEHOLDER — replace can photo before publish: Peanut Butter & Jelly Set">
+        <span class="ph-tag">PLACEHOLDER</span>
+        <span class="ph-name">Peanut Butter & Jelly Set</span>
+        <span class="ph-hint">Replace photo before publish</span>
+      </div>
+    <b>Peanut Butter & Jelly Set</b>
+    <i>set · strawberry sour + PB milkshake · from $32</i>
+    <span class="ph-badge">PLACEHOLDER — replace photo</span>
+  </article>
+  <article data-sku="jelly" data-placeholder="true">
+    <div class="ph" role="img" aria-label="PLACEHOLDER — replace can photo before publish: & Jelly Strawberry Sour">
+        <span class="ph-tag">PLACEHOLDER</span>
+        <span class="ph-name">& Jelly Strawberry Sour</span>
+        <span class="ph-hint">Replace photo before publish</span>
+      </div>
+    <b>& Jelly Strawberry Sour</b>
+    <i>strawberry sour · ask for ABV · $32</i>
+    <span class="ph-badge">PLACEHOLDER — replace photo</span>
+  </article>
+  <article data-sku="pbms" data-placeholder="true">
+    <div class="ph" role="img" aria-label="PLACEHOLDER — replace can photo before publish: Peanut Butter Milkshake IPA">
+        <span class="ph-tag">PLACEHOLDER</span>
+        <span class="ph-name">Peanut Butter Milkshake IPA</span>
+        <span class="ph-hint">Replace photo before publish</span>
+      </div>
+    <b>Peanut Butter Milkshake IPA</b>
+    <i>milkshake IPA · ask for ABV · $32</i>
+    <span class="ph-badge">PLACEHOLDER — replace photo</span>
+  </article>
+</div>
+<footer class="foot"><span>18+</span><span>不得向未成年人售賣酒類</span></footer>
+<script src="../assets/copy-mail.js"></script>
+</body>
+</html>

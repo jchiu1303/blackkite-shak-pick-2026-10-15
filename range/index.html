@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Black Kite — Range campaign</title>
+<link rel="stylesheet" href="../assets/soft-placeholders.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#141414; --cream:#f4efe6; --yellow:#e2b100; --hair:#ece7df; --mute:#666; --soft-banner-h:34px; }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  html,body { margin:0; background:#fff; color:var(--ink); font-family:Outfit,"Helvetica Neue",sans-serif; }
+  img { display:block; max-width:100%; }
+  a { color:inherit; text-decoration:none; }
+  button { font:inherit; color:inherit; background:none; border:0; padding:0; cursor:pointer; }
+  .feather { width:28px; height:28px; flex-shrink:0; }
+  .feather circle { fill:#111; }
+  .feather path { fill:#f4efe6; }
+  .feather-w circle { fill:rgba(255,255,255,.12); }
+  .feather-w path { fill:#fff; }
+
+  .site-nav {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:18px 4vw; border-bottom:1px solid var(--hair);
+    background:#fff; position:sticky; top:0; z-index:50;
+  }
+  .site-nav .mark { display:flex; align-items:center; gap:10px; font-weight:600; letter-spacing:.2em; font-size:11px; }
+  .site-nav .nav { display:flex; gap:28px; }
+  .site-nav .nav a { font-size:13px; letter-spacing:.12em; text-transform:uppercase; opacity:.85; }
+  .site-nav .nav a:hover, .site-nav .nav a.is-on { opacity:1; border-bottom:1px solid var(--ink); padding-bottom:2px; }
+
+  .hero { position:relative; height:calc(100vh - var(--soft-banner-h)); height:calc(100dvh - var(--soft-banner-h)); min-height:600px; overflow:hidden; background:#1a1814; }
+  .hero-media { position:absolute; inset:0; overflow:hidden; }
+  .hero-media img { width:100%; height:100%; object-fit:cover; object-position:center 30%; animation:ken 14s ease-out forwards; }
+  @keyframes ken { from{transform:scale(1)} to{transform:scale(1.03)} }
+  @media (prefers-reduced-motion:reduce){ .hero-media img{animation:none} }
+  .hero-chrome {
+    position:absolute; top:0; left:0; right:0; z-index:3;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:22px 4vw; color:#fff; text-shadow:0 1px 12px rgba(0,0,0,.35);
+  }
+  .hero-chrome .mark { display:flex; align-items:center; gap:10px; font-weight:600; letter-spacing:.2em; font-size:11px; }
+  .hero-chrome .nav { display:flex; gap:28px; }
+  .hero-chrome .nav a { font-size:13px; letter-spacing:.12em; text-transform:uppercase; opacity:.92; }
+  .hero-chrome .nav a:hover { opacity:1; }
+  .hero-cta {
+    position:absolute; left:0; right:0; bottom:0; z-index:3;
+    display:flex; align-items:baseline; justify-content:space-between; gap:24px; flex-wrap:wrap;
+    padding:18px 4vw 22px;
+    background:linear-gradient(180deg,transparent,rgba(0,0,0,.45) 40%,rgba(0,0,0,.62));
+    color:#fff;
+  }
+  .hero-cta .forbar { margin:0; font-size:11px; letter-spacing:.2em; text-transform:uppercase; opacity:.85; }
+  .hero-cta .mail { display:inline-block; margin-top:6px; border-bottom:1px solid rgba(255,255,255,.85); padding-bottom:2px; font-size:20px; font-weight:500; }
+  .hero-cta .mail:hover { border-bottom-color:var(--yellow); }
+  .hero-cta .hint { font-size:14px; max-width:28ch; line-height:1.4; opacity:.9; }
+
+  .stick {
+    position:fixed; left:0; right:0; top:0; z-index:40;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:10px 4vw; background:rgba(255,255,255,.94); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--hair); transform:translateY(-100%); transition:transform .28s ease;
+    pointer-events:none; visibility:hidden;
+  }
+  .stick.is-on { transform:translateY(0); pointer-events:auto; visibility:visible; }
+  .stick .mark { display:flex; align-items:center; gap:10px; font-weight:600; letter-spacing:.2em; font-size:11px; }
+  .stick .mail { border-bottom:1px solid var(--ink); font-size:15px; padding-bottom:1px; }
+
+  .drop { background:var(--yellow); color:var(--ink); padding:9vh 6vw; }
+  .drop p { margin:0 0 10px; font-size:12px; letter-spacing:.2em; text-transform:uppercase; }
+  .drop h2 { margin:0; max-width:14ch; font-family:"Barlow Condensed",Impact,sans-serif; font-weight:700; font-size:clamp(56px,9vw,128px); line-height:.82; text-transform:uppercase; letter-spacing:-.01em; }
+
+  .month-label { padding:48px 6vw 0; font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--mute); }
+  #month-cans { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--hair); }
+  #month-cans article { padding:48px 3.5vw 56px; border-right:1px solid var(--hair); opacity:0; transform:translateY(18px); transition:opacity .55s ease,transform .55s ease,background .25s; }
+  #month-cans article:last-child { border-right:0; }
+  #month-cans article.is-in { opacity:1; transform:translateY(0); }
+  #month-cans article:nth-child(2){ transition-delay:.04s } #month-cans article:nth-child(3){ transition-delay:.08s }
+  #month-cans article:hover { background:#faf8f4; }
+  #month-cans .shot { display:flex; align-items:flex-start; justify-content:center; min-height:380px; }
+  #month-cans img { width:auto; max-width:100%; max-height:440px; height:auto; object-fit:contain; object-position:center top; transition:transform .35s ease; }
+  #month-cans article:hover img { transform:translateY(-6px); }
+  #month-cans b { display:block; margin-top:22px; font-family:"Barlow Condensed",Impact,sans-serif; font-size:clamp(28px,3vw,40px); font-weight:500; line-height:.95; }
+  #month-cans i { display:block; margin-top:8px; font-style:normal; color:var(--mute); font-size:14px; }
+  #month-cans em { display:block; margin-top:12px; font-style:normal; font-family:"Barlow Condensed",Impact,sans-serif; font-size:28px; font-weight:700; }
+
+  .pair { padding:10vh 6vw; border-top:1px solid var(--hair); }
+  .pair h2 { margin:0 0 28px; font-family:"Barlow Condensed",Impact,sans-serif; font-weight:500; font-size:clamp(42px,5vw,68px); line-height:.9; }
+  .pair ul { margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; }
+  .pair li { list-style:none; }
+  .frame { position:relative; display:block; background:#111; overflow:hidden; }
+  .frame img { width:100%; height:380px; object-fit:cover; object-position:center; }
+  .play { position:absolute; left:50%; top:42%; width:56px; height:56px; margin:-28px 0 0 -28px; border:2px solid #fff; border-radius:50%; background:rgba(0,0,0,.35); pointer-events:none; }
+  .play::after { content:""; position:absolute; left:22px; top:17px; border-style:solid; border-width:10px 0 10px 16px; border-color:transparent transparent transparent #fff; }
+  .pair b { display:block; margin:14px 0 4px; font-size:15px; font-weight:600; }
+  .pair span { display:block; color:#444; font-size:14px; line-height:1.45; }
+
+  .trade { display:grid; grid-template-columns:.85fr 1.15fr; gap:48px; padding:12vh 6vw; background:var(--ink); color:var(--cream); }
+  .trade h2 { margin:0; font-family:"Barlow Condensed",Impact,sans-serif; font-weight:500; font-size:clamp(48px,6vw,84px); line-height:.88; }
+  .trade p { margin:0 0 18px; font-size:18px; line-height:1.45; max-width:42ch; }
+  .trade .mail { color:var(--cream); border-bottom:1px solid var(--cream); font-size:20px; padding-bottom:2px; }
+  .trade ul { margin:28px 0 0; padding:0; }
+  .trade li { list-style:none; padding:14px 0; border-top:1px solid rgba(244,239,230,.18); font-size:15px; line-height:1.4; }
+  .flock { max-width:200px; margin:22px 0 0; }
+  .flock img { height:240px; width:100%; object-fit:cover; }
+
+  .close { display:grid; grid-template-columns:1.2fr .8fr; gap:32px; padding:12vh 6vw; border-top:1px solid var(--hair); }
+  .close h2 { margin:0; font-family:"Barlow Condensed",Impact,sans-serif; font-weight:500; font-size:clamp(42px,5vw,72px); line-height:.9; }
+  .close p { margin:0; font-size:17px; line-height:1.5; max-width:34ch; color:#333; }
+  .page-head { padding:8vh 6vw 2vh; }
+  .page-head h1 { margin:0; font-family:"Barlow Condensed",Impact,sans-serif; font-weight:500; font-size:clamp(48px,7vw,96px); line-height:.88; }
+  .page-head p { margin:14px 0 0; font-size:17px; color:#444; max-width:42ch; line-height:1.45; }
+  .foot { display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; padding:18px 6vw 32px; font-size:13px; color:var(--mute); border-top:1px solid var(--hair); }
+  .soft-note { box-sizing:border-box; height:var(--soft-banner-h); display:flex; align-items:center; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--mute); padding:0 6vw; background:#faf8f4; border-bottom:1px solid var(--hair); margin:0; }
+
+  @media (max-width:900px){
+    #month-cans,.pair ul,.trade,.close { grid-template-columns:1fr; }
+    #month-cans article { border-right:0; border-bottom:1px solid var(--hair); }
+    #month-cans .shot { min-height:280px; } #month-cans img { max-height:320px; }
+    .frame img { height:280px; } .hero { min-height:520px; height:calc(92vh - var(--soft-banner-h)); height:calc(92dvh - var(--soft-banner-h)); }
+  }
+</style>
+</head>
+<body>
+<p class="soft-banner"><strong>SOFT MOCKUP</strong><span class="sep">·</span> not live · not publishable<span class="sep">·</span> grey dashed frames = PLACEHOLDER — replace before publish</p>
+<section class="hero" id="top">
+  <div class="hero-media">
+    <img src="../assets/glider.jpg" alt="Black Kite cans in an open box." width="768" height="960">
+  </div>
+  <header class="hero-chrome">
+    <a class="mark" href="index.html"><svg class="feather feather-w" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="31"/><path d="M40 14c-2 6-8 8-12 10 6 1 9 5 10 10-7-1-12 2-16 7 8-1 12 3 13 9-8 0-14 4-18 8 10-6 22-8 30-6-6 4-8 9-7 14-8-6-18-8-26-6 2-8 8-16 16-22-6 1-12 0-16-3 8 0 14-4 16-10 2 4 6 6 10 6-2-6-1-12 0-17z"/></svg> BLACK KITE</a>
+    <nav class="nav"><a href="index.html" class="is-on">Home</a><a href="shop.html">Shop</a><a href="trade.html">Trade</a><a href="visit.html">Visit</a></nav>
+  </header>
+  <div class="hero-cta">
+    <div>
+      <p class="forbar">For the bar</p>
+      <button type="button" class="mail" data-copy="beer@blackkite.hk">beer@blackkite.hk</button>
+    </div>
+    <p class="hint">Three cans from the box in Wong Chuk Hang. Most of the beer goes to bars.</p>
+  </div>
+</section>
+<div class="stick" id="stick" aria-hidden="true">
+  <a class="mark" href="index.html"><svg class="feather" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="31"/><path d="M40 14c-2 6-8 8-12 10 6 1 9 5 10 10-7-1-12 2-16 7 8-1 12 3 13 9-8 0-14 4-18 8 10-6 22-8 30-6-6 4-8 9-7 14-8-6-18-8-26-6 2-8 8-16 16-22-6 1-12 0-16-3 8 0 14-4 16-10 2 4 6 6 10 6-2-6-1-12 0-17z"/></svg> BLACK KITE</a>
+  <button type="button" class="mail" data-copy="beer@blackkite.hk">beer@blackkite.hk</button>
+</div>
+<section class="drop">
+  <p>On the feed <span class="ph-text">PLACEHOLDER copy</span></p>
+  <h2>Buy 1 get 1 free core beers.</h2>
+</section>
+<p class="month-label">This month · <a href="shop.html" style="color:inherit;border-bottom:1px solid currentColor">See shop</a></p>
+<div id="month-cans">
+  <article>
+    <div class="shot"><img src="../assets/skybound.jpg" alt="Skybound Lager" width="494" height="600"></div>
+    <b>Skybound Lager</b>
+    <i>4.6% · lager</i>
+    <em>$25</em>
+  </article>
+  <article>
+    <div class="shot"><img src="../assets/czechmate-full.png" alt="Czechmate" width="331" height="655"></div>
+    <b>Czechmate</b>
+    <i>4.5% · dark lager</i>
+    <em>$30</em>
+  </article>
+  <article>
+    <div class="shot"><img src="../assets/badass-full.png" alt="呢度重女" width="848" height="1264"></div>
+    <b>呢度重女</b>
+    <i>6.0% · hazy IPA</i>
+    <em>$30</em>
+  </article>
+</div>
+<section class="pair">
+  <h2>With the food.</h2>
+  <ul>
+    <li><span class="frame"><img src="../assets/reel-guava.jpg" alt="Guava sorbet reel frame." width="267" height="380"><i class="play" aria-hidden="true"></i></span><b>Pat Chun</b><span>Reel frame. Guava sorbet, sour ale glaze. The file stays on Instagram.</span></li>
+    <li><span class="frame"><img src="../assets/reel-beef.jpg" alt="Czechmate and braised beef reel frame." width="267" height="380"><i class="play" aria-hidden="true"></i></span><b>Czechmate</b><span>Reel frame. Dark lager with braised beef. The file stays on Instagram.</span></li>
+    <li><span class="frame"><img src="../assets/reel-veg.jpg" alt="Beer-battered vegetables reel frame." width="267" height="380"><i class="play" aria-hidden="true"></i></span><b>A vegetable plate</b><span>Reel frame. IPA beer batter. The file stays on Instagram.</span></li>
+  </ul>
+</section>
+<section class="trade" id="trade">
+  <h2>For the bar.</h2>
+  <div>
+    <p>Most of the beer goes to bars. Cans and cases. One email gets the list.</p>
+    <button type="button" class="mail" data-copy="beer@blackkite.hk">beer@blackkite.hk</button>
+    <p style="margin-top:20px"><a href="trade.html" style="border-bottom:1px solid currentColor">Full trade page →</a></p>
+  </div>
+</section>
+<section class="close" id="visit">
+  <h2>Wong Chuk Hang.</h2>
+  <p>11B Derrick Industrial Building, 49 Wong Chuk Hang Road. <a href="visit.html" style="border-bottom:1px solid currentColor">Visit details</a></p>
+</section>
+<footer class="foot">
+  <span>beer@blackkite.hk</span>
+  <span>18+ · 不得向未成年人售賣酒類</span>
+</footer>
+<script src="../assets/copy-mail.js"></script>
+<script>
+  var stick=document.getElementById("stick");
+  var hero=document.getElementById("top");
+  function syncStick(){ if(!stick||!hero)return; var on=window.scrollY>hero.offsetHeight-40; stick.classList.toggle("is-on",on); stick.setAttribute("aria-hidden",on?"false":"true"); }
+  window.addEventListener("scroll",syncStick,{passive:true}); syncStick();
+  if("IntersectionObserver" in window){ var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting)e.target.classList.add("is-in"); }); },{threshold:0.18}); document.querySelectorAll("#month-cans article").forEach(function(el){io.observe(el);}); }
+  else { document.querySelectorAll("#month-cans article").forEach(function(el){el.classList.add("is-in");}); }
+</script>
+</body>
+</html>

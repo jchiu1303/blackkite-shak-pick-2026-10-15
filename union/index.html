@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Black Kite — Union (film still)</title>
+<link rel="stylesheet" href="../assets/soft-placeholders.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ground: #100e0c;
+    --cream: #f7f1ea;
+    --mute: #cbb9a4;
+    --soft-banner-h: 40px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-snap-type: y proximity; }
+  html, body { margin: 0; background: var(--ground); color: var(--cream); font-family: Newsreader, Palatino, Georgia, serif; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+
+  /* Film still — first screen includes quiet bars strip so beer@ is in fold */
+  .film {
+    position: relative;
+    height: calc(100vh - var(--soft-banner-h));
+    height: calc(100dvh - var(--soft-banner-h));
+    min-height: 580px;
+    overflow: hidden;
+    scroll-snap-align: start;
+  }
+  .film > img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 28%;
+  }
+  .film::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(16,14,12,.42) 0%, rgba(16,14,12,.12) 22%, rgba(16,14,12,0) 38%),
+                linear-gradient(0deg, rgba(16,14,12,.88) 0%, rgba(16,14,12,.35) 28%, transparent 48%);
+    pointer-events: none;
+  }
+  .bar {
+    position: absolute; top: 0; left: 0; right: 0; z-index: 3;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 5vw;
+  }
+  .mark {
+    display: flex; align-items: center; gap: 10px;
+    font-family: Outfit, sans-serif;
+    letter-spacing: 0.24em; font-size: 11px; font-weight: 500;
+  }
+  .feather { width: 22px; height: 22px; }
+  .feather circle { fill: rgba(247,241,234,.15); }
+  .feather path { fill: var(--cream); }
+  .nav {
+    display: flex; gap: 28px;
+    font-family: Outfit, sans-serif;
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .nav a { opacity: .92; transition: opacity .2s; }
+  .nav a:hover, .nav a.is-on { opacity: 1; border-bottom: 1px solid var(--cream); padding-bottom: 2px; }
+
+  /* Headline only in open cardboard — upper third / flap void */
+  .film h1 {
+    position: absolute;
+    left: 5vw; right: 28vw;
+    top: 10vh;
+    z-index: 3;
+    margin: 0;
+    max-width: 11ch;
+    font-weight: 500;
+    font-size: clamp(44px, 6.4vw, 88px);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+    text-shadow: 0 2px 28px rgba(0,0,0,.28);
+  }
+
+  /* Quiet bars strip pinned to bottom of film = in fold */
+  .quiet {
+    position: absolute; left: 0; right: 0; bottom: 0; z-index: 4;
+    padding: 3.2vh 5vw 3.6vh;
+    border-top: 1px solid rgba(247,241,234,.12);
+    display: flex; align-items: baseline; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+    background: linear-gradient(0deg, rgba(16,14,12,.72), rgba(16,14,12,.28));
+  }
+  .quiet .forbar {
+    margin: 0 0 6px;
+    font-family: Outfit, sans-serif;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mute);
+  }
+  .quiet .mail {
+    border-bottom: 1px solid var(--cream);
+    font-family: Outfit, sans-serif; font-size: 18px; padding-bottom: 2px;
+  }
+  .quiet .mail:hover { opacity: .88; }
+  .quiet p {
+    margin: 0; max-width: 32ch; font-size: 17px; line-height: 1.35; color: var(--mute);
+  }
+
+  /* Chapters — editorial, not catalog grid */
+  .month-label {
+    padding: 7vh 6vw 0;
+    font-family: Outfit, sans-serif;
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mute);
+  }
+  #month-cans { display: block; }
+  .chapter {
+    min-height: 82vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: end;
+    gap: 4vw;
+    padding: 8vh 6vw 7vh;
+    border-top: 1px solid rgba(247,241,234,.1);
+    scroll-snap-align: start;
+  }
+  .chapter:nth-child(even) .copy { order: 2; }
+  .chapter:nth-child(even) .shot { order: 1; }
+  .chapter .shot {
+    display: flex; align-items: flex-end; justify-content: center;
+    min-height: 56vh;
+  }
+  .chapter img {
+    width: auto; max-width: 100%;
+    max-height: 68vh; height: auto;
+    object-fit: contain; object-position: center bottom;
+  }
+  .chapter .copy {
+    padding-bottom: 3vh;
+    opacity: 0; transform: translateY(12px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .chapter.is-in .copy { opacity: 1; transform: translateY(0); }
+  .chapter .copy > p {
+    margin: 0 0 18px;
+    max-width: 12ch;
+    font-size: clamp(32px, 4.2vw, 58px);
+    line-height: 0.95; font-weight: 500;
+  }
+  .chapter .meta {
+    font-family: Outfit, sans-serif;
+    font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute);
+  }
+  .chapter .price {
+    display: block; margin-top: 10px;
+    font-family: Outfit, sans-serif; font-size: 20px; color: var(--cream); letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .bridge {
+    padding: 8vh 6vw;
+    border-top: 1px solid rgba(247,241,234,.1);
+    display: flex; justify-content: space-between; align-items: baseline; gap: 24px; flex-wrap: wrap;
+  }
+  .bridge p { margin: 0; max-width: 28ch; font-size: 22px; line-height: 1.25; }
+  .bridge a {
+    font-family: Outfit, sans-serif;
+    font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+    border-bottom: 1px solid var(--cream); padding-bottom: 2px;
+  }
+
+  .foot {
+    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    padding: 18px 6vw 32px;
+    font-family: Outfit, sans-serif; font-size: 12px; color: var(--mute);
+    border-top: 1px solid rgba(247,241,234,.1);
+  }
+
+  @media (max-width: 800px) {
+    .film h1 { right: 8vw; top: 8vh; font-size: clamp(36px, 10vw, 56px); }
+    .quiet { flex-direction: column; align-items: flex-start; gap: 14px; }
+    .chapter { grid-template-columns: 1fr; min-height: auto; padding: 7vh 6vw; }
+    .chapter:nth-child(even) .copy, .chapter:nth-child(even) .shot { order: unset; }
+    .chapter .shot { min-height: 44vh; }
+    .chapter img { max-height: 48vh; }
+    .chapter .copy { order: -1; padding-bottom: 2vh; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-snap-type: none; }
+    .chapter .copy { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+<p class="soft-banner"><strong>SOFT MOCKUP</strong><span class="sep">·</span> not live · not publishable<span class="sep">·</span> grey dashed frames = PLACEHOLDER — replace before publish</p>
+
+<section class="film">
+  <img src="../assets/glider.jpg" alt="Black Kite cans in an open box." width="768" height="960">
+  <div class="bar">
+    <a class="mark" href="index.html">
+      <svg class="feather" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="31"/><path d="M40 14c-2 6-8 8-12 10 6 1 9 5 10 10-7-1-12 2-16 7 8-1 12 3 13 9-8 0-14 4-18 8 10-6 22-8 30-6-6 4-8 9-7 14-8-6-18-8-26-6 2-8 8-16 16-22-6 1-12 0-16-3 8 0 14-4 16-10 2 4 6 6 10 6-2-6-1-12 0-17z"/></svg>
+      BLACK KITE
+    </a>
+    <nav class="nav">
+      <a href="index.html" class="is-on">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="trade.html">Trade</a>
+      <a href="visit.html">Visit</a>
+    </nav>
+  </div>
+  <h1>Exploring Hong Kong’s flavour through beer.</h1>
+  <div class="quiet">
+    <div>
+      <p class="forbar">For the bar</p>
+      <button type="button" class="mail" data-copy="beer@blackkite.hk">beer@blackkite.hk</button>
+    </div>
+    <p>Most of the beer goes to bars. One email gets the list.</p>
+  </div>
+</section>
+
+<p class="month-label">This month</p>
+<div id="month-cans">
+  <section class="chapter">
+    <div class="copy">
+      <p>Skybound. A lager for the hot month.</p>
+      <span class="meta">4.6% · lager <span class="price">$25</span></span>
+    </div>
+    <div class="shot"><img src="../assets/skybound.jpg" alt="Skybound Lager" width="494" height="600"></div>
+  </section>
+  <section class="chapter">
+    <div class="copy">
+      <p>Czechmate. The lid stays in the frame.</p>
+      <span class="meta">4.5% · dark lager <span class="price">$30</span></span>
+    </div>
+    <div class="shot"><img src="../assets/czechmate-full.png" alt="Czechmate" width="331" height="655"></div>
+  </section>
+  <section class="chapter">
+    <div class="copy">
+      <p>呢度重女. A hazy IPA.</p>
+      <span class="meta">6.0% · hazy IPA <span class="price">$30</span></span>
+    </div>
+    <div class="shot"><img src="../assets/badass-full.png" alt="呢度重女" width="848" height="1264"></div>
+  </section>
+</div>
+
+<div class="bridge">
+  <p>Older cans live in the shop — full selection, lids in frame.</p>
+  <a href="shop.html">Open shop →</a>
+</div>
+
+<footer class="foot">
+  <span>18+</span>
+  <span>不得向未成年人售賣酒類</span>
+</footer>
+
+<script src="../assets/copy-mail.js"></script>
+<script>
+(function () {
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) e.target.classList.add("is-in");
+      });
+    }, { threshold: 0.25 });
+    document.querySelectorAll(".chapter").forEach(function (el) { io.observe(el); });
+  } else {
+    document.querySelectorAll(".chapter").forEach(function (el) { el.classList.add("is-in"); });
+  }
+})();
+</script>
+</body>
+</html>

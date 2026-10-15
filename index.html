@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Black Kite — Pick a style (Soft)</title>
+<link rel="stylesheet" href="assets/soft-placeholders.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#141414; --mute:#666; --hair:#e8e2d8; --cream:#f7f3ec; }
+  * { box-sizing:border-box; }
+  html,body { margin:0; background:var(--cream); color:var(--ink); font-family:Outfit,"Helvetica Neue",sans-serif; }
+  a { color:inherit; text-decoration:none; }
+  .wrap { max-width:1180px; margin:0 auto; padding:48px 24px 80px; }
+  .banner {
+    background:#141414; color:#f4efe6; text-align:center;
+    padding:12px 20px; font-size:13px; letter-spacing:.06em;
+  }
+  .banner strong { color:#e2b100; }
+  h1 {
+    margin:36px 0 8px;
+    font-family:"Barlow Condensed",Impact,sans-serif;
+    font-weight:700; font-size:clamp(42px,7vw,72px); line-height:.9; letter-spacing:-.01em;
+  }
+  .lede { margin:0 0 40px; font-size:17px; color:var(--mute); max-width:52ch; line-height:1.5; }
+  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+  .card {
+    background:#fff; border:1px solid var(--hair);
+    display:flex; flex-direction:column;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .card:hover { transform:translateY(-4px); box-shadow:0 12px 32px rgba(20,20,20,.08); }
+  .card .preview {
+    aspect-ratio:3/4; overflow:hidden; background:#1a1814;
+    border-bottom:1px solid var(--hair);
+  }
+  .card .preview img {
+    width:100%; height:100%; object-fit:cover; object-position:center top;
+    display:block;
+  }
+  .card .body { padding:22px 22px 26px; flex:1; display:flex; flex-direction:column; }
+  .card .tag { font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--mute); margin:0 0 8px; }
+  .card h2 {
+    margin:0 0 10px;
+    font-family:"Barlow Condensed",Impact,sans-serif;
+    font-weight:500; font-size:32px; line-height:.95;
+  }
+  .card p { margin:0 0 20px; font-size:14px; line-height:1.45; color:#444; flex:1; }
+  .card .go {
+    display:inline-block; align-self:flex-start;
+    font-size:13px; letter-spacing:.14em; text-transform:uppercase; font-weight:600;
+    border-bottom:2px solid var(--ink); padding-bottom:3px;
+  }
+  .foot { margin-top:48px; font-size:13px; color:var(--mute); line-height:1.5; }
+  .foot code { font-size:12px; background:#fff; padding:2px 6px; border:1px solid var(--hair); }
+  @media (max-width:900px){ .grid { grid-template-columns:1fr; max-width:420px; } }
+</style>
+</head>
+<body>
+<p class="soft-banner"><strong>SOFT MOCKUP</strong><span class="sep">·</span> not live · not publishable<span class="sep">·</span> grey dashed frames = PLACEHOLDER — replace before publish</p>
+<div class="banner"><strong>Soft ≠ live.</strong> Mockups for style pick only — not publishable · no DNS · do not email from here</div>
+<div class="wrap">
+  <h1>Black Kite — pick a style</h1>
+  <p class="lede">Three full clickable sites. Same beers, same locks (his photos, feather, beer@ copy-only, 18+). Different first-screen grammar. Open one, click Home / Shop / Trade / Visit.</p>
+  <div class="grid">
+    <a class="card" href="range/index.html">
+      <div class="preview"><img src="assets/wow-range.png" alt="Range campaign preview" width="600" height="800"></div>
+      <div class="body">
+        <p class="tag">Direction 1</p>
+        <h2>Range campaign</h2>
+        <p>Full-bleed Glider first, then white shop grid. Yellow Instagram offer band. Sticky mail bar for bars.</p>
+        <span class="go">Open site →</span>
+      </div>
+    </a>
+    <a class="card" href="union/index.html">
+      <div class="preview"><img src="assets/wow-union.png" alt="Union film still preview" width="600" height="800"></div>
+      <div class="body">
+        <p class="tag">Direction 2</p>
+        <h2>Union · film still</h2>
+        <p>Dark cardboard type over open-box Glider. Quiet bars strip in fold. Editorial chapters — not a colour-swap of Range.</p>
+        <span class="go">Open site →</span>
+      </div>
+    </a>
+    <a class="card" href="bev/index.html">
+      <div class="preview"><img src="assets/wow-bev.png" alt="Paper poster preview" width="600" height="800"></div>
+      <div class="body">
+        <p class="tag">Direction 3</p>
+        <h2>Paper poster</h2>
+        <p>No photo hero. Giant BLACK KITE wordmark, wholesale mail spine, cans on warm paper.</p>
+        <span class="go">Open site →</span>
+      </div>
+    </a>
+  </div>
+  <p class="foot"><strong>Soft ≠ publishable.</strong> Grey dashed frames = PLACEHOLDER. HK craft shop (ym/) redirects to Union. Pick a style above — click through Home / Shop / Trade / Visit.</p>
+</div>
+</body>
+</html>

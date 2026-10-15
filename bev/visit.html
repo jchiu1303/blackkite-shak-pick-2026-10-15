@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Black Kite — Visit</title>
+<link rel="stylesheet" href="../assets/soft-placeholders.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --paper:#e7d7b8; --ink:#24180f; --mute:#5c4a38; }
+  * { box-sizing:border-box; }
+  html,body { margin:0; background:var(--paper); color:var(--ink); font-family:Outfit,"Helvetica Neue",sans-serif; }
+  body::before {
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:0; opacity:0.035;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body > * { position:relative; z-index:1; }
+  img { display:block; max-width:100%; }
+  a { color:inherit; text-decoration:none; }
+  button { font:inherit; color:inherit; background:none; border:0; padding:0; cursor:pointer; }
+
+  .soft-note { font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--mute); padding:8px 4vw; border-bottom:1px solid rgba(36,24,15,.15); }
+
+  .top { display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap; padding:22px 4vw 0; }
+  .brand { display:flex; align-items:flex-end; gap:14px; }
+  .word { margin:0; font-family:"Barlow Condensed",Impact,sans-serif; font-weight:700; font-size:clamp(72px,14vw,180px); line-height:.78; letter-spacing:-.03em; }
+  .word-sm { font-size:clamp(42px,8vw,72px); }
+  .stamp { width:36px; height:36px; margin-bottom:10px; }
+  .stamp circle { fill:var(--ink); } .stamp path { fill:var(--paper); }
+  .nav { display:flex; gap:20px; font-size:14px; padding-bottom:14px; }
+  .nav a:hover, .nav a.is-on { text-decoration:underline; text-underline-offset:3px; }
+
+  .rule { border:0; border-top:2px solid var(--ink); margin:10px 4vw 0; }
+  .wholesale { margin:0; padding:14px 4vw 12px; font-size:clamp(16px,2vw,20px); display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
+  .wholesale .mail { border-bottom:2px solid var(--ink); font-size:clamp(20px,2.4vw,26px); font-weight:500; padding-bottom:1px; }
+
+  #month-cans { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; padding:20px 4vw 6vh; align-items:end; }
+  #month-cans article { text-align:left; }
+  #month-cans .tile { background:rgba(255,255,255,.28); border:1px solid rgba(36,24,15,.12); padding:18px 10px 8px; display:flex; align-items:flex-start; justify-content:center; min-height:48vh; }
+  #month-cans img { width:100%; height:48vh; object-fit:contain; object-position:center top; }
+  #month-cans b { display:block; margin-top:12px; font-family:"Barlow Condensed",Impact,sans-serif; font-size:clamp(24px,2.8vw,34px); font-weight:500; line-height:1; }
+  #month-cans i { display:block; margin-top:4px; font-style:normal; font-size:13px; color:var(--mute); }
+
+  .glider-stamp { margin:0 4vw 6vh; border:2px solid var(--ink); overflow:hidden; max-height:280px; }
+  .glider-stamp img { width:100%; height:280px; object-fit:cover; object-position:center 35%; filter:grayscale(12%) contrast(1.02); }
+
+  .page-block { padding:4vh 4vw 6vh; min-height:50vh; }
+  .page-block h1, .page-block h2 { margin:0 0 12px; font-family:"Barlow Condensed",Impact,sans-serif; font-size:clamp(36px,5vw,64px); font-weight:500; line-height:.95; }
+  .page-block p { margin:0 0 14px; font-size:16px; line-height:1.5; max-width:48ch; color:var(--mute); }
+  .page-block .mail { color:var(--ink); border-bottom:2px solid var(--ink); font-size:20px; }
+  .page-block ul { margin:16px 0; padding:0; max-width:48ch; }
+  .page-block li { list-style:none; padding:12px 0; border-top:1px solid rgba(36,24,15,.2); font-size:15px; line-height:1.4; color:var(--mute); }
+  .flock-still { max-width:200px; margin:20px 0; border:2px solid var(--ink); }
+  .flock-still img { width:100%; height:240px; object-fit:cover; }
+
+  #visit { padding:2vh 4vw 4vh; }
+  #visit h2 { margin:0 0 8px; font-family:"Barlow Condensed",Impact,sans-serif; font-size:clamp(36px,4vw,52px); font-weight:500; line-height:.95; }
+  #visit p { margin:0; font-size:16px; line-height:1.5; max-width:42ch; color:var(--mute); }
+
+  .foot { display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; padding:14px 4vw 28px; font-size:13px; color:var(--mute); border-top:2px solid var(--ink); margin:0 4vw; }
+
+  @media (max-width:800px){
+    #month-cans { grid-template-columns:1fr; }
+    #month-cans .tile { min-height:320px; } #month-cans img { height:320px; }
+    .word { font-size:clamp(64px,18vw,96px); }
+    .glider-stamp, .glider-stamp img { max-height:200px; height:200px; }
+  }
+  @media (prefers-reduced-motion:reduce){ body::before { display:none; } }
+</style>
+</head>
+<body>
+<p class="soft-banner"><strong>SOFT MOCKUP</strong><span class="sep">·</span> not live · not publishable<span class="sep">·</span> grey dashed frames = PLACEHOLDER — replace before publish</p>
+<header class="top">
+  <div class="brand">
+    <a href="index.html" class="word word-sm" style="color:inherit">BLACK KITE</a>
+    <svg class="stamp" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="31"/><path d="M40 14c-2 6-8 8-12 10 6 1 9 5 10 10-7-1-12 2-16 7 8-1 12 3 13 9-8 0-14 4-18 8 10-6 22-8 30-6-6 4-8 9-7 14-8-6-18-8-26-6 2-8 8-16 16-22-6 1-12 0-16-3 8 0 14-4 16-10 2 4 6 6 10 6-2-6-1-12 0-17z"/></svg>
+  </div>
+  <nav class="nav"><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="trade.html">Trade</a><a href="visit.html" class="is-on">Visit</a></nav>
+</header>
+<hr class="rule">
+<p class="wholesale" id="trade-line">Wholesale. One email. <button type="button" class="mail" data-copy="beer@blackkite.hk">beer@blackkite.hk</button></p>
+<hr class="rule">
+<div class="page-block">
+  <h1>Wong Chuk Hang.</h1>
+  <p>11B Derrick Industrial Building, 49 Wong Chuk Hang Road.</p>
+  <p>Delivery: Hong Kong Island, Kowloon, parts of the New Territories. Not Lantau.</p>
+  <p>Bars write to <button type="button" class="mail" data-copy="beer@blackkite.hk">beer@blackkite.hk</button>.</p>
+  <p style="margin-top:24px">18+ · 根據香港法律，不得在業務過程中向未成年人售賣或供應令人醺醉的酒類。</p>
+</div>
+<footer class="foot"><span>18+</span><span>不得向未成年人售賣酒類</span></footer>
+<script src="../assets/copy-mail.js"></script>
+</body>
+</html>
