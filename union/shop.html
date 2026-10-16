@@ -43,7 +43,7 @@
     font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
   }
   .nav a { opacity: .92; }
-  .nav a:hover, .nav a.is-on { opacity: 1; border-bottom: 1px solid var(--cream); padding-bottom: 2px; }
+  .nav a:hover, .nav a.is-on { opacity: 1; padding-bottom: 4px; }
 
   .page-head { padding: 7vh 6vw 2vh; }
   .page-head h1 {
@@ -174,32 +174,16 @@
 <div class="page-head reveal">
   <h1>Shop.</h1>
   <p class="sub">New beers on the front · older cans stay here as the full selection. Minimum prices only.</p>
+  <p class="shop-mail-fold" style="margin:14px 0 0;font-family:Outfit,sans-serif;font-size:14px;letter-spacing:.06em;">
+    <span style="display:block;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute);margin-bottom:6px;">For the bar</span>
+    <button type="button" class="mail" data-copy="beer@blackkite.hk" style="border-bottom:1px solid var(--cream);padding-bottom:2px;">beer@blackkite.hk</button>
+  </p>
 </div>
 
 <p class="month-label">This month · on the front</p>
-<div id="month-cans">
-  <article data-sku="skybound">
-    <div class="shot"><img src="../assets/skybound.jpg" alt="Skybound Lager"></div>
-    <b>Skybound Lager</b>
-    <i>4.6% · lager</i>
-    <em>$25</em>
-  </article>
-  <article data-sku="czechmate">
-    <div class="shot"><img src="../assets/czechmate-full.png" alt="Czechmate"></div>
-    <b>Czechmate</b>
-    <i>4.5% · dark lager</i>
-    <em>$30</em>
-  </article>
-  <article data-sku="badass">
-    <div class="shot"><img src="../assets/badass-full.png" alt="呢度重女 Badass"></div>
-    <b>呢度重女</b>
-    <i>6.0% · hazy IPA</i>
-    <em>$30</em>
-  </article>
-</div>
 
-<section class="chip-strip reveal" aria-label="Beer chips">
-  <p class="label">Hover a can</p>
+<section class="chip-strip reveal" aria-label="This month’s beers">
+  <p class="label">This month’s beers</p>
   <div class="chips">
     <button type="button" class="chip" aria-controls="chip-skybound" id="btn-skybound">Skybound</button>
     <button type="button" class="chip" aria-controls="chip-czechmate" id="btn-czechmate">Czechmate</button>
@@ -245,6 +229,27 @@
   </div>
 </section>
 
+
+<div id="month-cans">
+  <article data-sku="skybound">
+    <div class="shot"><img src="../assets/skybound.jpg" alt="Skybound Lager"></div>
+    <b>Skybound Lager</b>
+    <i>4.6% · lager</i>
+    <em>$25</em>
+  </article>
+  <article data-sku="czechmate">
+    <div class="shot"><img src="../assets/czechmate-full.png" alt="Czechmate"></div>
+    <b>Czechmate</b>
+    <i>4.5% · dark lager</i>
+    <em>$30</em>
+  </article>
+  <article data-sku="badass">
+    <div class="shot"><img src="../assets/badass-full.png" alt="呢度重女 Badass"></div>
+    <b>呢度重女</b>
+    <i>6.0% · hazy IPA</i>
+    <em>$30</em>
+  </article>
+</div>
 
 <div class="shop-wrap">
   <p class="shop-section-label">Full selection · live shop catalog <span class="ph-text">dashed = need photo</span></p>

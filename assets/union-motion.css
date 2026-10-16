@@ -22,13 +22,24 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Scroll reveal (sections) --- */
+/* --- Soft banner sticky (always in fold) --- */
+.soft-banner {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+/* --- Scroll reveal (sections) — visible until html.js-motion --- */
 .reveal {
-  opacity: 0;
-  transform: translateY(16px);
+  opacity: 1;
+  transform: none;
   transition: opacity .7s ease, transform .7s ease;
 }
-.reveal.is-in {
+html.js-motion .reveal {
+  opacity: 0;
+  transform: translateY(16px);
+}
+html.js-motion .reveal.is-in {
   opacity: 1;
   transform: translateY(0);
 }
@@ -151,15 +162,17 @@ a.cta:focus-visible {
   display: none;
   position: absolute;
   z-index: 40;
-  left: 0;
+  left: 12px;
   top: calc(100% + 12px);
-  width: min(420px, 92vw);
-  padding: 16px;
+  width: min(420px, calc(100vw - 24px));
+  max-width: calc(100vw - 24px);
+  padding: 16px 40px 16px 16px;
   background: #1a1714;
   border: 1px solid rgba(247,241,234,.18);
   border-radius: 8px;
   box-shadow: 0 24px 60px rgba(0,0,0,.55);
   color: var(--cream, #f7f1ea);
+  box-sizing: border-box;
 }
 .chip-panel.is-open {
   display: grid;
@@ -221,7 +234,8 @@ a.cta:focus-visible {
 @media (max-width: 800px) {
   .chip-panel.is-open {
     grid-template-columns: 72px 1fr;
-    width: min(360px, 94vw);
+    width: min(360px, calc(100vw - 24px));
+    max-width: calc(100vw - 24px);
   }
   .chip-panel img { width: 72px; height: 96px; }
 }

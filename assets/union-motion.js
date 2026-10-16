@@ -1,6 +1,10 @@
 /* Black Kite Union — motion helpers (soft mockup only) */
 (function () {
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var coarse = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
+
+  /* Enable motion-hide only after JS is present (FOUC-safe .reveal) */
+  document.documentElement.classList.add("js-motion");
 
   /* Scroll reveal via IntersectionObserver */
   function revealAll(sel) {
@@ -25,12 +29,13 @@
   revealAll(".chapter");
   revealAll(".reveal");
 
-  /* Ingredient / beer chips — hover, focus, Escape, tap */
+  /* Ingredient / beer chips — hover (fine), click-toggle (coarse), Escape, tap */
   var strip = document.querySelector(".chip-strip");
   if (!strip) return;
 
   var openChip = null;
   var openPanel = null;
+  var leaveTimer = null;
 
   function closePanel() {
     if (openPanel) {
@@ -46,16 +51,37 @@
   }
 
   function positionPanel(chip, panel) {
-    /* Keep panel inside strip horizontally */
-    panel.style.left = "0px";
+    panel.style.left = "12px";
     var stripRect = strip.getBoundingClientRect();
     var chipRect = chip.getBoundingClientRect();
-    var panelW = Math.min(420, window.innerWidth * 0.92);
+    var maxW = Math.min(420, window.innerWidth - 24);
+    var panelW = maxW;
     var left = chipRect.left - stripRect.left;
-    if (left + panelW > stripRect.width) {
-      left = Math.max(0, stripRect.width - panelW);
+    if (left < 12) left = 12;
+    if (left + panelW > stripRect.width - 12) {
+      left = Math.max(12, stripRect.width - panelW - 12);
     }
+    /* Keep panel in viewport horizontally */
+    var absLeft = stripRect.left + left;
+    if (absLeft < 12) left = 12 - stripRect.left;
+    if (absLeft + panelW > window.innerWidth - 12) {
+      left = window.innerWidth - 12 - panelW - stripRect.left;
+    }
+    if (left < 12) left = 12;
     panel.style.left = left + "px";
+    panel.style.maxWidth = maxW + "px";
+    panel.style.width = maxW + "px";
+
+    /* Prefer below; flip above if not enough room below */
+    panel.style.top = "";
+    panel.style.bottom = "";
+    var probeTop = "calc(100% + 12px)";
+    panel.style.top = probeTop;
+    var pr = panel.getBoundingClientRect();
+    if (pr.bottom > window.innerHeight - 8) {
+      panel.style.top = "auto";
+      panel.style.bottom = "calc(100% + 12px)";
+    }
   }
 
   function openFor(chip) {
@@ -76,9 +102,31 @@
     positionPanel(chip, panel);
   }
 
+  function scheduleClose() {
+    if (leaveTimer) clearTimeout(leaveTimer);
+    leaveTimer = setTimeout(function () {
+      if (strip.matches(":hover")) return;
+      if (openPanel && openPanel.matches(":hover")) return;
+      if (openChip && openChip === document.activeElement) return;
+      closePanel();
+    }, 120);
+  }
+
+  function cancelClose() {
+    if (leaveTimer) {
+      clearTimeout(leaveTimer);
+      leaveTimer = null;
+    }
+  }
+
   strip.querySelectorAll(".chip").forEach(function (chip) {
     chip.setAttribute("aria-expanded", "false");
-    chip.addEventListener("mouseenter", function () { openFor(chip); });
+    if (!coarse) {
+      chip.addEventListener("mouseenter", function () {
+        cancelClose();
+        openFor(chip);
+      });
+    }
     chip.addEventListener("focus", function () { openFor(chip); });
     chip.addEventListener("click", function (e) {
       e.preventDefault();
@@ -87,12 +135,17 @@
   });
 
   strip.addEventListener("mouseleave", function () {
-    /* Delay so moving into panel doesn't flash-close */
-    setTimeout(function () {
-      if (!strip.matches(":hover") && !(openChip && openChip === document.activeElement)) {
-        closePanel();
-      }
-    }, 120);
+    if (coarse) return;
+    scheduleClose();
+  });
+  strip.addEventListener("mouseenter", cancelClose);
+
+  strip.querySelectorAll(".chip-panel").forEach(function (panel) {
+    panel.addEventListener("mouseenter", cancelClose);
+    panel.addEventListener("mouseleave", function () {
+      if (coarse) return;
+      scheduleClose();
+    });
   });
 
   strip.querySelectorAll(".chip-panel .close").forEach(function (btn) {
