@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Black Kite — Union (film still)</title>
 <link rel="stylesheet" href="../assets/soft-placeholders.css">
+<link rel="stylesheet" href="../assets/union-motion.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
@@ -237,7 +238,55 @@
   </section>
 </div>
 
-<div class="bridge">
+
+<section class="chip-strip reveal" aria-label="This month’s beers">
+  <p class="label">Hover a can</p>
+  <div class="chips">
+    <button type="button" class="chip" aria-controls="chip-skybound" id="btn-skybound">Skybound</button>
+    <button type="button" class="chip" aria-controls="chip-czechmate" id="btn-czechmate">Czechmate</button>
+    <button type="button" class="chip" aria-controls="chip-badass" id="btn-badass">呢度重女</button>
+    <button type="button" class="chip" aria-controls="chip-flock" id="btn-flock">FLOCKFEST</button>
+
+    <div class="chip-panel" id="chip-skybound" role="region" aria-labelledby="btn-skybound" hidden>
+      <img src="../assets/skybound.jpg" alt="Skybound Lager" width="96" height="120">
+      <div>
+        <p class="name">Skybound</p>
+        <p class="meta">4.6% · lager · $25</p>
+        <p class="blurb">A lager for the hot month.</p>
+        <button type="button" class="close" aria-label="Close">Close</button>
+      </div>
+    </div>
+    <div class="chip-panel" id="chip-czechmate" role="region" aria-labelledby="btn-czechmate" hidden>
+      <img src="../assets/czechmate-full.png" alt="Czechmate" width="96" height="120">
+      <div>
+        <p class="name">Czechmate</p>
+        <p class="meta">4.5% · dark lager · $30</p>
+        <p class="blurb">The lid stays in the frame.</p>
+        <button type="button" class="close" aria-label="Close">Close</button>
+      </div>
+    </div>
+    <div class="chip-panel" id="chip-badass" role="region" aria-labelledby="btn-badass" hidden>
+      <img src="../assets/badass-full.png" alt="呢度重女" width="96" height="120">
+      <div>
+        <p class="name">呢度重女</p>
+        <p class="meta">6.0% · hazy IPA · $30</p>
+        <p class="blurb">A hazy IPA.</p>
+        <button type="button" class="close" aria-label="Close">Close</button>
+      </div>
+    </div>
+    <div class="chip-panel" id="chip-flock" role="region" aria-labelledby="btn-flock" hidden>
+      <img src="../assets/reel-flock.jpg" alt="FLOCKFEST still frame" width="96" height="120">
+      <div>
+        <p class="name">FLOCKFEST</p>
+        <p class="meta">Craft beer and music</p>
+        <p class="blurb">Still frame only — not a playthrough or date. They host FLOCKFEST.</p>
+        <button type="button" class="close" aria-label="Close">Close</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="bridge reveal">
   <p>Older cans live in the shop — full selection, lids in frame.</p>
   <a href="shop.html">Open shop →</a>
 </div>
@@ -248,19 +297,6 @@
 </footer>
 
 <script src="../assets/copy-mail.js"></script>
-<script>
-(function () {
-  if ("IntersectionObserver" in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) e.target.classList.add("is-in");
-      });
-    }, { threshold: 0.25 });
-    document.querySelectorAll(".chapter").forEach(function (el) { io.observe(el); });
-  } else {
-    document.querySelectorAll(".chapter").forEach(function (el) { el.classList.add("is-in"); });
-  }
-})();
-</script>
+<script src="../assets/union-motion.js"></script>
 </body>
 </html>
